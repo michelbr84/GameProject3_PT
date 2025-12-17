@@ -438,7 +438,7 @@ public class HeroCtrl : MonoBehaviour
                 return;
             rb.useGravity = false;
             a.SetBool("Jump", true);
-            rb.velocity = Vector3.up * 5; // Up in fast
+            rb.linearVelocity = Vector3.up * 5; // Up in fast
 
             // Fly State
             if (animCtrl.fly)
@@ -506,14 +506,14 @@ public class HeroCtrl : MonoBehaviour
                 a.SetBool("Jump", true);
                 //add extra force to main jump
                 if (!st.IsTag("LedgeJump"))
-                    rb.velocity = hero.up * jumpHeight;
+                    rb.linearVelocity = hero.up * jumpHeight;
                 // Start cooldown until we can jump again
                 //StartCoroutine (JumpCoolDown(0.5f));
             }
 
             // Don't slide
             if (!rb.isKinematic)
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
 
             // Extra rotation
             if (canRotate)
@@ -766,7 +766,7 @@ public class HeroCtrl : MonoBehaviour
             if (leftW)
             {
 
-                rb.velocity = hero.forward * Mathf.Abs(v) + hero.up * 3;
+                rb.linearVelocity = hero.forward * Mathf.Abs(v) + hero.up * 3;
                 if (!st.IsName("WallRun.RunL"))
                 {
                     a.SetBool("WallRunL", true);
@@ -781,7 +781,7 @@ public class HeroCtrl : MonoBehaviour
 
             else if (rightW)
             {
-                rb.velocity = hero.forward * Mathf.Abs(v) + hero.up * 3;
+                rb.linearVelocity = hero.forward * Mathf.Abs(v) + hero.up * 3;
                 if (!st.IsName("WallRun.RunR"))
                 {
                     a.SetBool("WallRunR", true);
@@ -796,7 +796,7 @@ public class HeroCtrl : MonoBehaviour
 
             else if (frontW)
             {
-                rb.velocity = hero.forward / 2;
+                rb.linearVelocity = hero.forward / 2;
                 if (!st.IsName("WallRun.RunUp"))
                 {
                     a.SetBool("WallRunUp", true);
@@ -1409,7 +1409,7 @@ public class HeroCtrl : MonoBehaviour
                     else if (nT >= 0.6f && rb.isKinematic) // fall early
                         rb.isKinematic = false;
                     if (!rb.isKinematic)
-                        rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                        rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
                 }
             }
             else // Animation is finished 
@@ -1706,7 +1706,7 @@ public class HeroCtrl : MonoBehaviour
 
         a.SetFloat("WaterLevel", dTS);
 
-        rb.drag = waterDrag;
+        rb.linearDamping = waterDrag;
 
         // Rotation, if mouse movement
         if (mX != 0.0f)
@@ -1724,13 +1724,13 @@ public class HeroCtrl : MonoBehaviour
             {
                 Vector3 swimInput = hero.right * h + cam.transform.forward * v;
 
-                rb.velocity = swimInput.normalized * speed;
+                rb.linearVelocity = swimInput.normalized * speed;
             }
             else if (grounded && dTS < offsetToSurf) // Walking in/out of the water
             {
                 Vector3 swimInput = hero.right * h + hero.forward * v;
 
-                rb.velocity = swimInput.normalized * speed;
+                rb.linearVelocity = swimInput.normalized * speed;
             }
             else // Above the surface
             {
@@ -1773,11 +1773,11 @@ public class HeroCtrl : MonoBehaviour
     {
         if (distToSurf > offsetToSurf) // Under water
         {
-            rb.velocity = Vector3.Lerp(rb.velocity, liftVec, Time.deltaTime * 2);
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, liftVec, Time.deltaTime * 2);
         }
         else
         {
-            rb.velocity = Vector3.Lerp(rb.velocity, -liftVec, Time.deltaTime * 2);
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, -liftVec, Time.deltaTime * 2);
         }
     }
     //=================================================================================================================o
@@ -1793,7 +1793,7 @@ public class HeroCtrl : MonoBehaviour
             distY = c.bounds.max.y;
 
             rb.useGravity = false;
-            rb.velocity = Vector3.down * 5; // Dive in fast
+            rb.linearVelocity = Vector3.down * 5; // Dive in fast
             // Swim State
             if (animCtrl.swim)
             {
@@ -1816,7 +1816,7 @@ public class HeroCtrl : MonoBehaviour
             // Base State
             if (animCtrl.baseC)
             {
-                rb.drag = baseDrag;
+                rb.linearDamping = baseDrag;
                 a.runtimeAnimatorController = animCtrl.baseC;
                 baseState = BaseState.Base; // Out
             }
@@ -1830,7 +1830,7 @@ public class HeroCtrl : MonoBehaviour
     //=================================================================================================================o
     void _Fly()
     {
-        rb.drag = flyDrag;
+        rb.linearDamping = flyDrag;
 
         // Rotation, if mouse movement
         if (mX != 0.0f)
@@ -1845,7 +1845,7 @@ public class HeroCtrl : MonoBehaviour
             // Base State
             if (animCtrl.baseC)
             {
-                rb.drag = baseDrag;
+                rb.linearDamping = baseDrag;
                 a.runtimeAnimatorController = animCtrl.baseC;
                 baseState = BaseState.Base; // Out
             }
@@ -1866,13 +1866,13 @@ public class HeroCtrl : MonoBehaviour
 
                 if (groundTime > 0.6f)
                 {
-                    rb.velocity = Vector3.Lerp(Vector3.zero, Vector3.up * 22, groundTime);
+                    rb.linearVelocity = Vector3.Lerp(Vector3.zero, Vector3.up * 22, groundTime);
                     groundTime = 0;
                 }
             }
             else
             {
-                rb.velocity = flyVec.normalized * flySpeed;
+                rb.linearVelocity = flyVec.normalized * flySpeed;
             }
         }
     }
@@ -1938,14 +1938,14 @@ public class HeroCtrl : MonoBehaviour
             {
                 a.SetBool("Jump", true);
                 //add extra force to main jump
-                rb.velocity = hero.up * jumpHeight;
+                rb.linearVelocity = hero.up * jumpHeight;
                 // Start cooldown until we can jump again
                 //StartCoroutine (JumpCoolDown(0.5f));
             }
 
             // Don't slide
             if (!rb.isKinematic)
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
 
             // Extra rotation
             if (canRotate)
@@ -2139,7 +2139,7 @@ public class HeroCtrl : MonoBehaviour
         hero.position = Vector3.Lerp(hero.position, pos, Time.deltaTime * 100.0f);
         rootB.position = pos;
 
-        float velM = rootB.GetComponent<Rigidbody>().velocity.magnitude;
+        float velM = rootB.GetComponent<Rigidbody>().linearVelocity.magnitude;
 
         // Stop condition
         if (velM <= endRagForce && grounded)
@@ -2157,7 +2157,7 @@ public class HeroCtrl : MonoBehaviour
             }
             else if (targetAngle <= 40.0f) // Front
             {
-                rootB.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                rootB.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
                 a.SetInteger("RandomM", 1);
                 MainRotationRagDoll(-2);
                 EndRagdoll(1); // Out
@@ -2178,7 +2178,7 @@ public class HeroCtrl : MonoBehaviour
         a.cullingMode = AnimatorCullingMode.AlwaysAnimate;
         a.enabled = false;
         // Velocity with H and V axis
-        Vector3 vec = rb.velocity + hero.forward * v * 2 + hero.right * h * 2;
+        Vector3 vec = rb.linearVelocity + hero.forward * v * 2 + hero.right * h * 2;
         vec.y -= 3; // Extra down force
 
         rb.isKinematic = true;
@@ -2191,8 +2191,8 @@ public class HeroCtrl : MonoBehaviour
             {
                 bones[i].GetComponent<Rigidbody>().isKinematic = false;
                 bones[i].GetComponent<Collider>().isTrigger = false;
-                bones[i].GetComponent<Rigidbody>().drag = 0.0f;
-                bones[i].GetComponent<Rigidbody>().velocity = vec;
+                bones[i].GetComponent<Rigidbody>().linearDamping = 0.0f;
+                bones[i].GetComponent<Rigidbody>().linearVelocity = vec;
             }
         }
         startRagdoll = false;

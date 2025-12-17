@@ -384,7 +384,7 @@ namespace HWRWeaponSystem
 								if (RigidbodyProjectile) {
 									if (bullet.GetComponent<Rigidbody>()) {
 										if (Owner != null && Owner.GetComponent<Rigidbody>()) {
-											bullet.GetComponent<Rigidbody>().velocity = Owner.GetComponent<Rigidbody>().velocity;
+											bullet.GetComponent<Rigidbody>().linearVelocity = Owner.GetComponent<Rigidbody>().linearVelocity;
 										}
 										bullet.GetComponent<Rigidbody>().AddForce (direction * ForceShoot);	
 									}

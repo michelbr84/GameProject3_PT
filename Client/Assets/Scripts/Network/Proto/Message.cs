@@ -1561,6 +1561,22 @@ namespace Protocol
       get { return _z; }
       set { _z = value; }
     }
+    private float _vx = default(float);
+    [global::ProtoBuf.ProtoMember(20, IsRequired = false, Name=@"vx", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+    [global::System.ComponentModel.DefaultValue(default(float))]
+    public float vx
+    {
+      get { return _vx; }
+      set { _vx = value; }
+    }
+    private float _vz = default(float);
+    [global::ProtoBuf.ProtoMember(21, IsRequired = false, Name=@"vz", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+    [global::System.ComponentModel.DefaultValue(default(float))]
+    public float vz
+    {
+      get { return _vz; }
+      set { _vz = value; }
+    }
     private float _ft = default(float);
     [global::ProtoBuf.ProtoMember(12, IsRequired = false, Name=@"ft", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
     [global::System.ComponentModel.DefaultValue(default(float))]
@@ -2473,6 +2489,12 @@ namespace Protocol
             
       [global::ProtoBuf.ProtoEnum(Name=@"MSG_SCENESVR_MSGID_END", Value=3999999)]
       MSG_SCENESVR_MSGID_END = 3999999,
+
+      [global::ProtoBuf.ProtoEnum(Name=@"MSG_ENTER_VIEW_NTF", Value=3000030)]
+      MSG_ENTER_VIEW_NTF = 3000030,
+
+      [global::ProtoBuf.ProtoEnum(Name=@"MSG_LEAVE_VIEW_NTF", Value=3000031)]
+      MSG_LEAVE_VIEW_NTF = 3000031,
             
       [global::ProtoBuf.ProtoEnum(Name=@"MSG_PROXYSVR_MSGID_BEGIN", Value=4000000)]
       MSG_PROXYSVR_MSGID_BEGIN = 4000000,
@@ -3842,6 +3864,22 @@ namespace Protocol
     }
     private int _hp = default(int);
     [global::ProtoBuf.ProtoMember(10, IsRequired = false, Name=@"hp", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    private float _vx = default(float);
+    [global::ProtoBuf.ProtoMember(20, IsRequired = false, Name=@"vx", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+    [global::System.ComponentModel.DefaultValue(default(float))]
+    public float vx
+    {
+      get { return _vx; }
+      set { _vx = value; }
+    }
+    private float _vz = default(float);
+    [global::ProtoBuf.ProtoMember(21, IsRequired = false, Name=@"vz", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+    [global::System.ComponentModel.DefaultValue(default(float))]
+    public float vz
+    {
+      get { return _vz; }
+      set { _vz = value; }
+    }
     [global::System.ComponentModel.DefaultValue(default(int))]
     public int hp
     {

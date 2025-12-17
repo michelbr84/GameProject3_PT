@@ -59,7 +59,7 @@ build/
 *.pdb
 *.pgc
 *.pgd
-*.rsp
+# *.rsp
 *.sbr
 *.tlb
 *.tli
@@ -244,7 +244,7 @@ Client/Assets/UnityVS
 Client/Assets/T4M
 Client/Assets/Flux
 Client/Assets/FORGE3D
-Client/Assets/Third
+# Client/Assets/Third
 Client/Assets/StreamingAssets
 *.meta
 *.fbx

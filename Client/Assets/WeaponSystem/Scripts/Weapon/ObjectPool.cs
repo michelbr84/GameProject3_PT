@@ -81,7 +81,7 @@ namespace HWRWeaponSystem
 			rotationTemp = this.transform.rotation;
 		
 			if (rigidBody) {
-				rigidBody.velocity = Vector3.zero;
+				rigidBody.linearVelocity = Vector3.zero;
 				rigidBody.angularVelocity = Vector3.zero;
 			}
 			if (lineRenderer) {
@@ -134,7 +134,7 @@ namespace HWRWeaponSystem
 			this.transform.position = positionTemp;
 			this.transform.rotation = rotationTemp;
 			if (rigidBody) {
-				rigidBody.velocity = Vector3.zero;
+				rigidBody.linearVelocity = Vector3.zero;
 				rigidBody.angularVelocity = Vector3.zero;
 			}
 			if (lineRenderer) {

@@ -57,10 +57,10 @@ namespace HWRWeaponSystem
 				return;
 		
 			if (!RigidbodyProjectile) {
-				GetComponent<Rigidbody>().velocity = transform.forward * Speed;
+				GetComponent<Rigidbody>().linearVelocity = transform.forward * Speed;
 			} else {
-				if (this.GetComponent<Rigidbody>().velocity.normalized != Vector3.zero)
-					this.transform.forward = this.GetComponent<Rigidbody>().velocity.normalized;	
+				if (this.GetComponent<Rigidbody>().linearVelocity.normalized != Vector3.zero)
+					this.transform.forward = this.GetComponent<Rigidbody>().linearVelocity.normalized;	
 			}
 			if (Speed < SpeedMax) {
 				Speed += SpeedMult * Time.fixedDeltaTime;
