@@ -444,7 +444,7 @@ public static class NGUIEditorTools
 		if (force || !settings.readable || settings.npotScale != TextureImporterNPOTScale.None || settings.alphaIsTransparency)
 		{
 			settings.readable = true;
-			if (NGUISettings.trueColorAtlas) settings.textureFormat = TextureImporterFormat.AutomaticTruecolor;
+			if (NGUISettings.trueColorAtlas) ti.textureCompression = TextureImporterCompression.Uncompressed;
 			settings.npotScale = TextureImporterNPOTScale.None;
 			settings.alphaIsTransparency = false;
 			ti.SetTextureSettings(settings);

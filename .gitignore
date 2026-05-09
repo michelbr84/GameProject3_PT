@@ -232,11 +232,13 @@ project/Server/ServerEngine/Debug/ServerEngine.lastbuildstate
 
 #u3d tempfile
 Client/Assets/Resources
+Client/Library
 Client/library
-Client/obj
+Client/Logs
 Client/obj
 Client/ProjectSettings
 Client/Temp
+Client/UserSettings
 Client/Assets/Third/NGUI/Examples
 Client/Assets/AmplifyShaderEditor
 Client/Assets/UDT
@@ -277,3 +279,6 @@ proto/proto-gen-lua
 *.unsuccessfulbuild
 *.asset
 *.exp
+
+# Crash dump files
+*.dmp

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -197,11 +197,13 @@ public class EditorTools : Editor
         AssetDatabase.Refresh();
     }
 
-    [MenuItem("编辑器/NLE")]
-    static void OpenNLEWindow()
-    {
-        EditorWindow.GetWindow<NLE.EDT.NSequencerWindow>().Show();
-    }
+    // NOTE: NLE plugin is not present in this project build.
+    // Uncomment when the NLE package is imported.
+    // [MenuItem("编辑器/NLE")]
+    // static void OpenNLEWindow()
+    // {
+    //     EditorWindow.GetWindow<NLE.EDT.NSequencerWindow>().Show();
+    // }
 
     [MenuItem("编辑器/打包")]
     static void Build()

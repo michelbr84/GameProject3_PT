@@ -1,47 +1,56 @@
-Game Engine Frame
-===============
+# GameProject3_PT
+
 Framework de servidor de jogo multiprocesso multiplataforma, com camada de rede implementada de três maneiras: SocketApi, Boost Asio e Libuv.
 O framework utiliza memória compartilhada, filas sem bloqueio (lock-free), pool de objetos e pool de memória para melhorar o desempenho do servidor.
 
-Também possui um cliente Demo em constante aperfeiçoamento, o jogo contém uma grande quantidade de recursos completos, montarias, pets, parceiros, equipamentos, todos podem ser equipados e usados, e é possível entrar em masmorras para batalhar, jogabilidade multiplayer também já foi implementada.
-Endereço do Cliente Demo: https://github.com/ylmbtm/DemoClient
+Também possui um cliente Demo em constante aperfeiçoamento — o jogo contém uma grande quantidade de recursos completos: montarias, pets, parceiros e equipamentos, todos podem ser equipados e usados. É possível entrar em masmorras para batalhar; jogabilidade multiplayer também já foi implementada.
 
- #### Instruções de Implantação e Inicialização do Servidor
- ##### 1. Compilação
-	Windows: Use o VisualStudio 2017 ou superior para abrir a solução e compilar diretamente.
-	Linux  : Execute o script buildall.sh para compilar.
-##### 2. Instalação do MySQL
-	Instale o banco de dados MySQL na máquina, versão recomendada MySQL 5.7. Após a instalação, se não quiser alterar o arquivo de configuração, crie o usuário root com a senha 123456 (padrão no arquivo de configuração).
-	Em seguida, encontre o arquivo db_create.sql no projeto e execute-o no banco de dados para criar as tabelas do banco de dados.
-##### 3. Iniciar o Servidor
-	Após concluir os dois passos acima, há um arquivo StartServer.bat no diretório \Server. Execute o arquivo bat e siga as instruções.
+> **Nota:** Este é um fork em Português do [GameProject3](https://github.com/ylmbtm/GameProject3) original.
 
-#### Descrição dos Funções do Servidor
-	Servidor de Login (LoginServer)  Descrição : Aceita conexões de login dos jogadores, processa mensagens de solicitação de login.
-	Servidor de Conta (AccountServer)Descrição : Processa a verificação de login da conta, criação de novas contas e salvamento do banco de dados da conta.
-	Servidor Central (CenterServer)  Descrição : Usado para atividades entre servidores, necessidades de guerra entre servidores.
-	Servidor Lógico (LogicServer)    Descrição : Processa dados lógicos do personagem do jogador, processa funções lógicas gerais do personagem do jogador.
-	Servidor de Jogo (GameServer)    Descrição : Processa sincronização de movimento do jogador, habilidades, buffs e outras funções de combate.
-	Servidor de Dados (DBServer)     Descrição : Atua como um servidor proxy entre o servidor lógico e o banco de dados mysql, responsável por gravar periodicamente os dados do jogador no banco de dados.
-	Servidor Gateway (ProxyServer)   Descrição : Atua como um servidor de trânsito entre o cliente, servidor lógico e servidor de campo de batalha, responsável principalmente pelo encaminhamento de mensagens.
-	Servidor de Log (LogServer)      Descrição : Servidor de log responsável principalmente por gravar logs operacionais do servidor lógico no banco de dados mysql.
-	Servidor de Monitoramento (WatchServer) Descrição : Responsável principalmente por aceitar comandos de controle do backend WEB, controlando o servidor.
+---
 
-#### Documentação e Tutoriais
-1. Tutorial em vídeo fornecido pelo membro do grupo Binaryhobart(450282550) [Endereço do Tutorial](https://www.bilibili.com/video/BV1k5411s7Vf?from=search&seid=3304544258866101487)
+## Instruções de Implantação e Inicialização do Servidor
 
-Endereço Gitee: https://gitee.com/ylmbtm/GameProject3
+### 1. Compilação
+- **Windows:** Use o VisualStudio 2017 ou superior para abrir a solução e compilar diretamente.
+- **Linux:** Execute o script `buildall.sh` para compilar.
 
-Grupo de Troca QQ : 962315897
-Conta Pública:![public1](https://github.com/ylmbtm/resource/blob/master/20210818175029.png)
-![public1](https://wx1.sinaimg.cn/mw2000/002dp2Ulgy1gvofyue87sj6065065wf602.jpg)
+### 2. Instalação do MySQL
+1. Instale o banco de dados MySQL na máquina (versão recomendada: **MySQL 5.7**).
+2. Após a instalação, se não quiser alterar o arquivo de configuração, crie o usuário `root` com a senha `123456` (padrão no arquivo de configuração).
+3. Encontre o arquivo `db_create.sql` no projeto e execute-o no banco de dados para criar as tabelas.
 
+### 3. Iniciar o Servidor
+Após concluir os dois passos acima, execute o arquivo `Server/StartServer.bat` e siga as instruções.
 
-#### Experiência do Efeito do Cliente (O código completo do cliente e os recursos estão nos arquivos do grupo)
-![login1](https://github.com/ylmbtm/resource/blob/master/01.png)
-![login2](https://github.com/ylmbtm/resource/blob/master/02.png)
-![login3](https://github.com/ylmbtm/resource/blob/master/03.png)
-![login4](https://github.com/ylmbtm/resource/blob/master/04.png)
+---
 
+## Descrição dos Servidores
 
-#   G a m e P r o j e c t 3 _ P T  
+| Servidor | Descrição |
+|---|---|
+| **LoginServer** | Aceita conexões de login dos jogadores, processa mensagens de solicitação de login. |
+| **AccountServer** | Processa a verificação de login da conta, criação de novas contas e salvamento no banco de dados. |
+| **CenterServer** | Usado para atividades entre servidores e guerra entre servidores. |
+| **LogicServer** | Processa dados lógicos do personagem e funções lógicas gerais. |
+| **GameServer** | Processa sincronização de movimento, habilidades, buffs e combate. |
+| **DBServer** | Proxy entre o servidor lógico e o MySQL; grava periodicamente os dados do jogador no banco de dados. |
+| **ProxyServer** | Trânsito entre o cliente, servidor lógico e servidor de campo de batalha; encaminhamento de mensagens. |
+| **LogServer** | Grava logs operacionais do servidor lógico no MySQL. |
+| **WatchServer** | Aceita comandos de controle do backend WEB para controle do servidor. |
+
+---
+
+## Cliente Unity
+
+O cliente Unity está na pasta `Client/`. Abra o projeto com **Unity 6** (ou versão compatível).
+
+### Requisitos
+- Unity 6000.0 ou superior
+- MySQL 5.7 (para o servidor)
+
+---
+
+## Referências
+- Projeto original: https://github.com/ylmbtm/GameProject3
+- Endereço Gitee: https://gitee.com/ylmbtm/GameProject3
